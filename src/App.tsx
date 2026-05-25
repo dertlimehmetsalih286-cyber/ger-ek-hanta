@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed May 20 22:54:06 2026
-
-@author: Dell
-"""
-
 import { Switch, Route, Router as WouterRouter, Link, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Stethoscope, Activity, History, ShieldAlert } from "lucide-react";
-import NotFound from "@/pages/not-found";
+import NotFound from "./pages/not-found";
 import AnalyzerPage from "./pages/analyzer";
 import HistoryPage from "./pages/history";
 import StatsPage from "./pages/stats";
@@ -28,7 +21,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-[100dvh] flex flex-col md:flex-row bg-background">
-      <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-border bg-card shrink-0 flex flex-col">
+      <aside className="w-full md:w-64 border-r border-border bg-card shrink-0 flex flex-col">
         <div className="p-6 flex items-center gap-3 border-b border-border">
           <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground">
             <ShieldAlert className="w-5 h-5" />
@@ -44,7 +37,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             return (
               <Link key={link.href} href={link.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
-                  isActive ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                  isActive ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-slate-100"
                 }`}
               >
                 {link.icon}
@@ -78,7 +71,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <WouterRouter>
           <Router />
         </WouterRouter>
         <Toaster />
