@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # 5. Vite (Frontend) projesini derliyoruz (dist klasörünü oluşturur)
-RUN npm run build
+RUN npm install --no-audit --no-fund
 
 # 6. Sistemin dışarıya açılacağı portu belirtiyoruz
 EXPOSE 3000
